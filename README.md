@@ -1,8 +1,10 @@
 # PyTorch ResNet Image Classifier
 
-This project implements a multiclass image classification pipeline in PyTorch. The classifier uses a ResNet-18 style architecture and is trained to classify images into six categories: bus, car, light, sign, truck, and vegetation.
+This project implements a multiclass image classification pipeline in PyTorch. The classifier uses a ResNet-18 style architecture trained from scratch to classify images into six categories: bus, car, light, sign, truck, and vegetation.
 
-The project includes utilities for dataset preparation, a custom PyTorch Dataset class, Albumentations-based image preprocessing and augmentation, training and validation loops, model checkpointing, learning-curve visualization, and an inference script that exports predictions to CSV.
+The project includes dataset preparation utilities, a custom PyTorch Dataset class, Albumentations-based image preprocessing and augmentation, training and validation loops, model checkpointing, learning-curve visualization, and an inference script that exports predictions to CSV.
+
+This repository focuses on the implementation of the classification pipeline, including the model architecture, dataset handling, training workflow, and inference workflow. The full dataset and trained model checkpoint are not included because of file-size.
 
 ## Classes
 
@@ -19,7 +21,7 @@ The model predicts one of the following classes:
 
 ## Model
 
-The model is a custom ResNet-18 style convolutional neural network implemented in PyTorch. It is built from residual `BasicBlock` modules and adapted for six output classes.
+The model is a ResNet-18 style convolutional neural network implemented in PyTorch and trained from scratch. It is built from residual `BasicBlock` modules and adapted for six output classes.
 
 ## Attribution
 
@@ -29,29 +31,19 @@ The custom ResNet-18 implementation was adapted from the DebuggerCafe tutorial [
 
 ```text
 .
-├── dataset.py
-├── network.py
-├── training.py
-├── inference.py
-├── learning_curves.png
-├── model.pt
-├── requirements.txt
 ├── README.md
-├── reference/
-│   └── reference_predictions.csv
-└── test_data/
-    ├── bus/
-    ├── car/
-    ├── light/
-    ├── sign/
-    ├── truck/
-    └── vegetation/
+├── final_learning_curves.png
+└── classification/
+    ├── dataset.py
+    ├── inference.py
+    ├── network.py
+    ├── training.py
+    └── requirements.txt
 ```
-The `test_data/` folder contains test images organized by class. The `reference/reference_predictions.csv` file contains the ground-truth labels for these test images and can be used to compare against the predictions saved in `output_predictions/predictions.csv`.
 
 ## Dataset format
 
-The dataset is expected to be organized into class-specific folders:
+The code expects the dataset to be organized into class-specific folders:
 
 ```text
 dataset/
@@ -65,28 +57,28 @@ dataset/
 
 Each folder should contain images belonging to that class.
 
-The full training dataset is not included in this repository. The repository includes a small `test_data/` folder for demonstrating inference and prediction output.
+During training, the script splits the provided dataset into training and validation subsets using a 90/10 split.
 
-During training, the script splits the whole dataset into training and validation subsets using a 90/10 split.
+The training script also contains optional logic for creating separate train and test folders from an original class-structured dataset. This is controlled by the `TRAIN_TEST_FLAG` variable in `training.py`.
 
 ## Requirements
 
-Install the required dependencies:
+Install the required dependencies from the repository root:
 
 ```bash
-pip install -r requirements.txt
+pip install -r classification/requirements.txt
 ```
 
-Note: model architecture visualization with `torchview` may require Graphviz to be installed on the system.
+Note: PyTorch installation may vary depending on whether CPU or GPU/CUDA support is needed. Model architecture visualization with `torchview` may also require Graphviz to be installed on the system.
 
 ## Usage
 
 ### Training
 
-To train the model, run:
+To train the model from the repository root, run:
 
 ```bash
-python training.py path/to/train_dataset
+python classification/training.py path/to/train_dataset
 ```
 
 The training script:
@@ -94,7 +86,7 @@ The training script:
 - loads images from class-specific folders,
 - applies preprocessing and augmentation,
 - splits the data into training and validation subsets,
-- trains the custom ResNet-18 model,
+- trains the custom ResNet-18 model from scratch,
 - saves the best model checkpoint based on validation loss,
 - saves learning curves.
 
@@ -106,18 +98,20 @@ learning_curves.png
 model_architecture.png
 ```
 
+The trained model checkpoint is not included in this repository.
+
 ### Inference
 
-To run inference using a trained model checkpoint:
+After training, the best checkpoint is saved as `model.pt`. It can then be used for inference:
 
 ```bash
-python inference.py path/to/test_dataset model.pt
+python classification/inference.py path/to/test_dataset model.pt
 ```
 
 To run inference on only the first `N` samples:
 
 ```bash
-python inference.py path/to/test_dataset model.pt 100
+python classification/inference.py path/to/test_dataset model.pt 100
 ```
 
 Predictions are saved to:
@@ -134,13 +128,13 @@ filename,class_id
 
 ## Training results
 
-The training and validation losses are shown below:
+The training and validation losses from one training run are shown below:
 
 ![Learning curves](final_learning_curves.png)
 
 ## Features
 
-- Custom ResNet-18 style model implemented in PyTorch
+- Custom ResNet-18 style model implemented in PyTorch and trained from scratch
 - Custom `torch.utils.data.Dataset` class
 - Optional train/test dataset preparation utility
 - Albumentations preprocessing and augmentation
@@ -164,4 +158,4 @@ model_architecture.png
 output_predictions/
 ```
 
-These files can be excluded from version control if needed, except for files intentionally included to demonstrate model performance.
+These files are generated during training or inference and are not required to be committed to the repository.
