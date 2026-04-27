@@ -62,7 +62,7 @@ dataset/
 
 Each folder should contain images belonging to that class.
 
-The full training dataset is not included in this repository. If sample images are included, they are intended only to demonstrate the expected folder structure and to allow quick inference testing.
+The full training dataset is not included in this repository. Sample images are included. However, they are intended only to demonstrate the expected folder structure and to allow quick inference testing.
 
 During training, the script splits the provided dataset into training and validation subsets using a 90/10 split.
 
