@@ -1,0 +1,10 @@
+torch
+torchview
+albumentations
+scikit-image
+scikit-learn
+tqdm
+numpy
+matplotlib
+pandas
+graphviz
