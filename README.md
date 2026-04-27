@@ -2,7 +2,7 @@
 
 This project implements a multiclass image classification pipeline in PyTorch. The classifier uses a ResNet-18 style architecture and is trained to classify images into six categories: bus, car, light, sign, truck, and vegetation.
 
-The project includes a custom PyTorch Dataset class, Albumentations-based image preprocessing and augmentation, training and validation loops, model checkpointing, learning-curve visualization, and an inference script that exports predictions to CSV.
+The project includes utilities for dataset preparation, a custom PyTorch Dataset class, Albumentations-based image preprocessing and augmentation, training and validation loops, model checkpointing, learning-curve visualization, and an inference script that exports predictions to CSV.
 
 ## Classes
 
