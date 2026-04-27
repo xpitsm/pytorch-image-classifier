@@ -47,6 +47,7 @@ The custom ResNet-18 implementation was adapted from the DebuggerCafe tutorial [
     ├── truck/
     └── vegetation/
 ```
+The `test_data/` folder contains test images organized by class. The `reference/reference_predictions.csv` file contains the ground-truth labels for these test images and can be used to compare against the predictions saved in `output_predictions/predictions.csv`.
 
 ## Dataset format
 
@@ -64,9 +65,9 @@ dataset/
 
 Each folder should contain images belonging to that class.
 
-The full training dataset is not included in this repository. Sample images are included. However, they are intended only to demonstrate the expected folder structure and to allow quick inference testing.
+The full training dataset is not included in this repository. The repository includes a small `test_data/` folder for demonstrating inference and prediction output.
 
-During training, the script splits the provided dataset into training and validation subsets using a 90/10 split.
+During training, the script splits the whole dataset into training and validation subsets using a 90/10 split.
 
 ## Requirements
 
