@@ -86,12 +86,6 @@ To train the model, run:
 python training.py path/to/train_dataset
 ```
 
-Example:
-
-```bash
-python training.py dataset
-```
-
 The training script:
 
 - loads images from class-specific folders,
@@ -115,12 +109,6 @@ To run inference using a trained model checkpoint:
 
 ```bash
 python inference.py path/to/test_dataset model.pt
-```
-
-Example:
-
-```bash
-python inference.py sample_data model.pt
 ```
 
 To run inference on only the first `N` samples:
