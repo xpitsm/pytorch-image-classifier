@@ -1,6 +1,6 @@
 # PyTorch ResNet Image Classifier
 
-This project implements a multiclass image classification pipeline in PyTorch. The classifier uses a custom ResNet-18 style architecture and is trained to classify images into six categories: bus, car, light, sign, truck, and vegetation.
+This project implements a multiclass image classification pipeline in PyTorch. The classifier uses a ResNet-18 style architecture and is trained to classify images into six categories: bus, car, light, sign, truck, and vegetation.
 
 The project includes a custom PyTorch Dataset class, Albumentations-based image preprocessing and augmentation, training and validation loops, model checkpointing, learning-curve visualization, and an inference script that exports predictions to CSV.
 
@@ -21,7 +21,9 @@ The model predicts one of the following classes:
 
 The model is a custom ResNet-18 style convolutional neural network implemented in PyTorch. It is built from residual `BasicBlock` modules and adapted for six output classes.
 
-The ResNet implementation was adapted from the DebuggerCafe tutorial “Implementing ResNet18 in PyTorch from Scratch” and modified for this classification task.
+## Attribution
+
+The custom ResNet-18 implementation was adapted from the DebuggerCafe tutorial [Implementing ResNet18 in PyTorch from Scratch](https://debuggercafe.com/implementing-resnet18-in-pytorch-from-scratch/#download-code) and modified for this six-class image classification task.
 
 ## Project structure
 
