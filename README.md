@@ -23,9 +23,7 @@ The model predicts one of the following classes:
 
 The model is a ResNet-18 style convolutional neural network implemented in PyTorch and trained from scratch. It is built from residual `BasicBlock` modules and adapted for six output classes.
 
-## Attribution
-
-The custom ResNet-18 implementation was adapted from the DebuggerCafe tutorial [Implementing ResNet18 in PyTorch from Scratch](https://debuggercafe.com/implementing-resnet18-in-pytorch-from-scratch/#download-code) and modified for this six-class image classification task.
+**Attribution:** The custom ResNet-18 implementation was adapted from the DebuggerCafe tutorial [Implementing ResNet18 in PyTorch from Scratch](https://debuggercafe.com/implementing-resnet18-in-pytorch-from-scratch/#download-code) and modified for this six-class image classification task.
 
 ## Project structure
 
@@ -59,17 +57,15 @@ Each folder should contain images belonging to that class.
 
 During training, the script splits the provided dataset into training and validation subsets using a 90/10 split.
 
-The training script also contains optional logic for creating separate train and test folders from an original class-structured dataset. This is controlled by the `TRAIN_TEST_FLAG` variable in `training.py`.
+The training script also includes optional train/test split logic controlled by `TRAIN_TEST_FLAG` in `training.py`. When enabled, it creates separate `train/` and `test/` folders using an 80/20 split and generates a reference CSV file for the test set.
 
 ## Requirements
 
-Install the required dependencies from the repository root:
+The required dependencies can be installed from the repository root:
 
 ```bash
 pip install -r classification/requirements.txt
 ```
-
-Note: PyTorch installation may vary depending on whether CPU or GPU/CUDA support is needed. Model architecture visualization with `torchview` may also require Graphviz to be installed on the system.
 
 ## Usage
 
@@ -126,7 +122,11 @@ The output CSV has the following format:
 filename,class_id
 ```
 
-## Training results
+## Results
+
+The model was trained from scratch on the six-class image classification dataset. The best checkpoint was selected based on validation loss during training.
+
+On the held-out test set, the model achieved a final accuracy of `92.90%`.
 
 The training and validation losses from one training run are shown below:
 
@@ -146,16 +146,3 @@ The training and validation losses from one training run are shown below:
 - Model checkpointing based on validation loss
 - Learning-curve plotting
 - Inference script with CSV prediction output
-
-## Generated files
-
-Running the training and inference scripts may create the following outputs:
-
-```text
-model.pt
-learning_curves.png
-model_architecture.png
-output_predictions/
-```
-
-These files are generated during training or inference and are not required to be committed to the repository.
