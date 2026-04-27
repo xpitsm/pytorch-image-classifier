@@ -139,6 +139,7 @@ The training and validation losses are shown below:
 
 - Custom ResNet-18 style model implemented in PyTorch
 - Custom `torch.utils.data.Dataset` class
+- Optional train/test dataset preparation utility
 - Albumentations preprocessing and augmentation
 - 90/10 train-validation split
 - Cross-entropy loss
