@@ -37,7 +37,9 @@ The custom ResNet-18 implementation was adapted from the DebuggerCafe tutorial [
 ├── model.pt
 ├── requirements.txt
 ├── README.md
-└── sample_data/
+├── reference/
+│   └── reference_predictions.csv
+└── test_data/
     ├── bus/
     ├── car/
     ├── light/
