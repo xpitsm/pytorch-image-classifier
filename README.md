@@ -66,7 +66,7 @@ The full training dataset is not included in this repository. Sample images are 
 
 During training, the script splits the provided dataset into training and validation subsets using a 90/10 split.
 
-## Installation
+## Requirements
 
 Install the required dependencies:
 
